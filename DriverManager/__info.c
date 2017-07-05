@@ -689,13 +689,13 @@ char *unicode_to_ansi_alloc( SQLWCHAR *str, SQLINTEGER len, DMHDBC connection, i
         len = wide_strlen( str ) + 1;
     }
 
-    aptr = malloc( len + 1 );
+    aptr = malloc(( len * 4 ) + 1 );       /* There may be UTF8 */
     if ( !aptr )
     {
         return NULL;
     }
 
-    return unicode_to_ansi_copy( aptr, len, str, len, connection, clen );
+    return unicode_to_ansi_copy( aptr, len * 4, str, len, connection, clen );
 }
 
 /*
