@@ -182,15 +182,27 @@ SQLRETURN SQLSpecialColumnsW( SQLHSTMT statement_handle,
 
     thread_protect( SQL_HANDLE_STMT, statement );
 
-    /*
-     * Check the SQL_ATTR_METADATA_ID settings
-     */
+    if ( identifier_type != SQL_BEST_ROWID &&
+            identifier_type != SQL_ROWVER )
+    {
+        dm_log_write( __FILE__, 
+                __LINE__, 
+                LOG_INFO, 
+                LOG_INFO, 
+                "Error: HY097" );
 
-    if ( statement -> metadata_id == SQL_TRUE &&
-            schema_name == NULL )
+        __post_internal_error( &statement -> error,
+                ERROR_HY097, NULL,
+                statement -> connection -> environment -> requested_version );
+
+        return function_return_nodrv( SQL_HANDLE_STMT, statement, SQL_ERROR );
+    }
+
+    if ( name_length1 < 0 && name_length1 != SQL_NTS ||
+         name_length2 < 0 && name_length2 != SQL_NTS )
     {
         __post_internal_error( &statement -> error,
-                ERROR_HY009, NULL,
+                ERROR_HY090, NULL,
                 statement -> connection -> environment -> requested_version );
 
         return function_return_nodrv( SQL_HANDLE_STMT, statement, SQL_ERROR );
@@ -205,9 +217,7 @@ SQLRETURN SQLSpecialColumnsW( SQLHSTMT statement_handle,
         return function_return_nodrv( SQL_HANDLE_STMT, statement, SQL_ERROR );
     }
 
-    if (( name_length1 < 0 && name_length1 != SQL_NTS ) ||
-            ( name_length2 < 0 && name_length3 != SQL_NTS ) ||
-            ( name_length3 < 0 && name_length3 != SQL_NTS ))
+    if ( name_length3 < 0 && name_length3 != SQL_NTS )
     {
         __post_internal_error( &statement -> error,
                 ERROR_HY090, NULL,
@@ -216,17 +226,15 @@ SQLRETURN SQLSpecialColumnsW( SQLHSTMT statement_handle,
         return function_return_nodrv( SQL_HANDLE_STMT, statement, SQL_ERROR );
     }
 
-    if ( identifier_type != SQL_BEST_ROWID &&
-            identifier_type != SQL_ROWVER )
-    {
-        dm_log_write( __FILE__, 
-                __LINE__, 
-                LOG_INFO, 
-                LOG_INFO, 
-                "Error: HY097" );
+    /*
+     * Check the SQL_ATTR_METADATA_ID settings
+     */
 
+    if ( statement -> metadata_id == SQL_TRUE &&
+            schema_name == NULL )
+    {
         __post_internal_error( &statement -> error,
-                ERROR_HY097, NULL,
+                ERROR_HY009, NULL,
                 statement -> connection -> environment -> requested_version );
 
         return function_return_nodrv( SQL_HANDLE_STMT, statement, SQL_ERROR );
