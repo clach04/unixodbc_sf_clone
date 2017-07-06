@@ -1571,14 +1571,19 @@ void __release_desc( DMHDESC descriptor )
     assoc_stmt = statement_root;
     while ( assoc_stmt )
     {
-        DMHDESC *pDesc[] = {
-            &assoc_stmt -> ipd, &assoc_stmt -> apd, &assoc_stmt -> ird, &assoc_stmt -> ard
-        };
-        DMHDESC impDesc[] = {
-            assoc_stmt -> implicit_ipd, assoc_stmt -> implicit_apd,
-            assoc_stmt -> implicit_ird, assoc_stmt -> implicit_ard
-        };
+        DMHDESC *pDesc[ 4 ];
+        DMHDESC impDesc[ 4 ];
         int i;
+        
+        pDesc[ 0 ] = &assoc_stmt -> ipd;
+        pDesc[ 1 ] = &assoc_stmt -> apd;
+        pDesc[ 2 ] = &assoc_stmt -> ird;
+        pDesc[ 3 ] = &assoc_stmt -> ard;
+        impDesc[ 0 ] = assoc_stmt -> implicit_ipd;
+        impDesc[ 1 ] = assoc_stmt -> implicit_apd;
+        impDesc[ 2 ] = assoc_stmt -> implicit_ird;
+        impDesc[ 3 ] = assoc_stmt -> implicit_ard;
+
         for ( i = 0; i < 4; i++ )
         {
             if ( *pDesc[i] == descriptor )
