@@ -4202,6 +4202,8 @@ static void extract_diag_error( int htype,
     rec_number = 1;
     do
     {
+        len = 0;
+
         ret = SQLGETDIAGREC( connection,
                 head -> handle_type,
                 handle,
@@ -4465,6 +4467,8 @@ static void extract_sql_error( DRV_SQLHANDLE henv,
 
     do
     {
+        len = 0;
+
         ret = SQLERROR( connection,
                 henv, 
                 hdbc,
@@ -4575,6 +4579,8 @@ static void extract_diag_error_w( int htype,
     rec_number = 1;
     do
     {
+        len = 0;
+
         ret = SQLGETDIAGRECW( connection,
                 head -> handle_type,
                 handle,
@@ -4810,6 +4816,8 @@ static void extract_sql_error_w( DRV_SQLHANDLE henv,
 
     do
     {
+        len = 0;
+
         ret = SQLERRORW( connection,
                 henv, 
                 hdbc,
