@@ -296,6 +296,7 @@ fi
 
 AC_CHECK_LONG_LONG
 AC_CHECK_SIZEOF([long int])
+AC_CHECK_TYPES([ptrdiff_t])
 
 AC_CHECK_FUNCS( strcasecmp strncasecmp vsnprintf strtol atoll strtoll endpwent gettimeofday ftime time stricmp strnicmp getuid getpwuid nl_langinfo )
 
@@ -454,7 +455,7 @@ AC_SUBST(msql_headers)
 dnl Checks for header files.
 AC_HEADER_STDC
 
-AC_CHECK_HEADERS(malloc.h unistd.h pwd.h crypt.h limits.h synch.h strings.h string.h locale.h sys/malloc.h sys/types.h sys/sem.h stdarg.h varargs.h sys/time.h sys/timeb.h time.h langinfo.h )
+AC_CHECK_HEADERS(malloc.h unistd.h pwd.h crypt.h limits.h synch.h strings.h string.h locale.h sys/malloc.h sys/types.h sys/sem.h stdarg.h varargs.h sys/time.h sys/timeb.h time.h langinfo.h stddef.h )
 
 INCLUDES="$INCLUDES $USER_INCLUDES";
 
