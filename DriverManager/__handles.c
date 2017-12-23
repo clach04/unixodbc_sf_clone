@@ -621,6 +621,10 @@ DMHDBC __alloc_dbc( void )
         connection -> protection_level = TS_LEVEL3;
 #endif
 
+#ifdef HAVE_ICONV
+        connection -> iconv_cd_uc_to_ascii = (iconv_t)(-1);
+        connection -> iconv_cd_ascii_to_uc = (iconv_t)(-1);
+#endif
     }
 
     local_mutex_exit( &mutex_lists );
@@ -742,6 +746,12 @@ void __release_dbc( DMHDBC connection )
     }
 
     clear_error_head( &connection -> error );
+
+    /*
+     * shutdown unicode
+     */
+
+    unicode_shutdown( connection );
 
 #ifdef HAVE_LIBPTH
 #elif HAVE_LIBPTHREAD
@@ -1571,19 +1581,14 @@ void __release_desc( DMHDESC descriptor )
     assoc_stmt = statement_root;
     while ( assoc_stmt )
     {
-        DMHDESC *pDesc[ 4 ];
-        DMHDESC impDesc[ 4 ];
+        DMHDESC *pDesc[] = {
+            &assoc_stmt -> ipd, &assoc_stmt -> apd, &assoc_stmt -> ird, &assoc_stmt -> ard
+        };
+        DMHDESC impDesc[] = {
+            assoc_stmt -> implicit_ipd, assoc_stmt -> implicit_apd,
+            assoc_stmt -> implicit_ird, assoc_stmt -> implicit_ard
+        };
         int i;
-        
-        pDesc[ 0 ] = &assoc_stmt -> ipd;
-        pDesc[ 1 ] = &assoc_stmt -> apd;
-        pDesc[ 2 ] = &assoc_stmt -> ird;
-        pDesc[ 3 ] = &assoc_stmt -> ard;
-        impDesc[ 0 ] = assoc_stmt -> implicit_ipd;
-        impDesc[ 1 ] = assoc_stmt -> implicit_apd;
-        impDesc[ 2 ] = assoc_stmt -> implicit_ird;
-        impDesc[ 3 ] = assoc_stmt -> implicit_ard;
-
         for ( i = 0; i < 4; i++ )
         {
             if ( *pDesc[i] == descriptor )

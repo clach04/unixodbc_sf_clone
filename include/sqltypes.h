@@ -174,9 +174,19 @@ typedef unsigned long   SQLSETPOSIROW;
 #else
 typedef long            SQLINTEGER;
 typedef unsigned long   SQLUINTEGER;
+
+/* Handle case of building on mingw-w64 */
+
+#ifdef _WIN64
+typedef long long SQLLEN;
+typedef unsigned long long SQLULEN;
+typedef unsigned long long SQLSETPOSIROW;
+#else
 #define SQLLEN          SQLINTEGER
 #define SQLULEN         SQLUINTEGER
 #define SQLSETPOSIROW   SQLUSMALLINT
+#endif
+
 typedef SQLULEN         SQLROWCOUNT;
 typedef SQLULEN         SQLROWSETSIZE;
 typedef SQLULEN         SQLTRANSID;
