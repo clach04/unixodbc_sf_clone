@@ -1,4 +1,5 @@
-2.3.5pre
+2-Jan-2018
+2.3.5
 
     * Add configure option --enable-setlibversion set mark the libs with VERS_3.52
       Linux only, so any driver built with the libs will work with closed source 
