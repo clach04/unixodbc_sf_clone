@@ -82,7 +82,11 @@
 static	char	sccsid[]
 	= "@(#)SQL parser for NNSQL(NetNews SQL), Copyright(c) 1995, 1996 by Ke Jin";
 
+#include <stdint.h>
+#include <stdlib.h>
+
 #include	<config.h>
+#include    <nnconfig.h>
 
 #include	<nncol.h>
 #include	<yyenv.h>
@@ -132,7 +136,7 @@ static char*	get_unpacked_attrname(yystmt_t* pstmt, char* name);
 #define 	EMPTY_PTR		ERROR_PTR
 
 
-#line 136 "yyparse.c" /* yacc.c:339  */
+#line 140 "yyparse.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -269,7 +273,7 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 74 "yyparse.y" /* yacc.c:355  */
+#line 78 "yyparse.y" /* yacc.c:355  */
 
 	char*	qstring;
 	char*	name;
@@ -285,7 +289,7 @@ union YYSTYPE
 
 	node_t node;		/* a node haven't add to tree */
 
-#line 289 "yyparse.c" /* yacc.c:355  */
+#line 293 "yyparse.c" /* yacc.c:355  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
@@ -299,7 +303,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 303 "yyparse.c" /* yacc.c:358  */
+#line 307 "yyparse.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -601,17 +605,17 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   162,   162,   165,   167,   177,   181,   185,   186,   194,
-     197,   199,   206,   208,   209,   217,   218,   219,   220,   221,
-     225,   226,   227,   231,   232,   233,   237,   238,   242,   253,
-     255,   257,   259,   270,   281,   294,   298,   300,   301,   302,
-     303,   304,   308,   309,   322,   324,   326,   328,   337,   340,
-     354,   355,   367,   380,   392,   417,   447,   476,   501,   517,
-     518,   520,   522,   527,   529,   531,   536,   541,   555,   565,
-     578,   589,   600,   616,   617,   618,   622,   636,   651,   652,
-     655,   657,   664,   666,   673,   675,   683,   733,   738,   746,
-     748,   750,   755,   760,   768,   772,   777,   785,   797,   805,
-     806,   807,   808,   809,   810,   812,   813
+       0,   166,   166,   169,   171,   181,   185,   189,   190,   198,
+     201,   203,   210,   212,   213,   221,   222,   223,   224,   225,
+     229,   230,   231,   235,   236,   237,   241,   242,   246,   257,
+     259,   261,   263,   274,   285,   298,   302,   304,   305,   306,
+     307,   308,   312,   313,   326,   328,   330,   332,   341,   344,
+     358,   359,   371,   384,   396,   421,   451,   480,   505,   521,
+     522,   524,   526,   531,   533,   535,   540,   545,   559,   569,
+     582,   593,   604,   620,   621,   622,   626,   640,   655,   656,
+     659,   661,   668,   670,   677,   679,   687,   737,   742,   750,
+     752,   754,   759,   764,   772,   776,   781,   789,   801,   809,
+     810,   811,   812,   813,   814,   816,   817
 };
 #endif
 
@@ -1535,13 +1539,13 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 162 "yyparse.y" /* yacc.c:1646  */
+#line 166 "yyparse.y" /* yacc.c:1646  */
     { YYACCEPT; }
-#line 1541 "yyparse.c" /* yacc.c:1646  */
+#line 1545 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 168 "yyparse.y" /* yacc.c:1646  */
+#line 172 "yyparse.y" /* yacc.c:1646  */
     {
 		if( ! table_check( pyyenv->pstmt ) )
 		{
@@ -1551,84 +1555,84 @@ yyreduce:
 
 		pyyenv->pstmt->type = en_stmt_select;
 	  }
-#line 1555 "yyparse.c" /* yacc.c:1646  */
+#line 1559 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 178 "yyparse.y" /* yacc.c:1646  */
+#line 182 "yyparse.y" /* yacc.c:1646  */
     {
 		pyyenv->pstmt->type = en_stmt_insert;
 	  }
-#line 1563 "yyparse.c" /* yacc.c:1646  */
+#line 1567 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 182 "yyparse.y" /* yacc.c:1646  */
+#line 186 "yyparse.y" /* yacc.c:1646  */
     {
 		pyyenv->pstmt->type = en_stmt_srch_delete;
 	  }
-#line 1571 "yyparse.c" /* yacc.c:1646  */
+#line 1575 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 187 "yyparse.y" /* yacc.c:1646  */
+#line 191 "yyparse.y" /* yacc.c:1646  */
     {
 		pyyenv->pstmt->type = en_stmt_alloc;
 		YYABORT;
 	  }
-#line 1580 "yyparse.c" /* yacc.c:1646  */
+#line 1584 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 200 "yyparse.y" /* yacc.c:1646  */
+#line 204 "yyparse.y" /* yacc.c:1646  */
     {
 		SETYYERROR(pyyenv, NOT_SUPPORT_UPDATEABLE_CURSOR) ;
 		YYABORT;
 	  }
-#line 1589 "yyparse.c" /* yacc.c:1646  */
+#line 1593 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 210 "yyparse.y" /* yacc.c:1646  */
+#line 214 "yyparse.y" /* yacc.c:1646  */
     {
 		SETYYERROR(pyyenv, NOT_SUPPORT_DISTINCT_SELECT);
 		YYABORT;
 	  }
-#line 1598 "yyparse.c" /* yacc.c:1646  */
+#line 1602 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 217 "yyparse.y" /* yacc.c:1646  */
+#line 221 "yyparse.y" /* yacc.c:1646  */
     { if(add_all_attr(pyyenv->pstmt)) YYABORT; }
-#line 1604 "yyparse.c" /* yacc.c:1646  */
+#line 1608 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 218 "yyparse.y" /* yacc.c:1646  */
+#line 222 "yyparse.y" /* yacc.c:1646  */
     { if(add_all_attr(pyyenv->pstmt)) YYABORT; }
-#line 1610 "yyparse.c" /* yacc.c:1646  */
+#line 1614 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 219 "yyparse.y" /* yacc.c:1646  */
+#line 223 "yyparse.y" /* yacc.c:1646  */
     { if(add_news_attr(pyyenv->pstmt)) YYABORT; }
-#line 1616 "yyparse.c" /* yacc.c:1646  */
+#line 1620 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 220 "yyparse.y" /* yacc.c:1646  */
+#line 224 "yyparse.y" /* yacc.c:1646  */
     { if(add_xnews_attr(pyyenv->pstmt)) YYABORT; }
-#line 1622 "yyparse.c" /* yacc.c:1646  */
+#line 1626 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 221 "yyparse.y" /* yacc.c:1646  */
+#line 225 "yyparse.y" /* yacc.c:1646  */
     { if(add_attr(pyyenv->pstmt, 0, 0))  YYABORT; }
-#line 1628 "yyparse.c" /* yacc.c:1646  */
+#line 1632 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 243 "yyparse.y" /* yacc.c:1646  */
+#line 247 "yyparse.y" /* yacc.c:1646  */
     {
 		yycol_t col;
 
@@ -1639,29 +1643,29 @@ yyreduce:
 			YYABORT;
 
 	  }
-#line 1643 "yyparse.c" /* yacc.c:1646  */
+#line 1647 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 254 "yyparse.y" /* yacc.c:1646  */
+#line 258 "yyparse.y" /* yacc.c:1646  */
     { if( column_name( pyyenv->pstmt, (yyvsp[0].name) ) ) YYABORT; }
-#line 1649 "yyparse.c" /* yacc.c:1646  */
+#line 1653 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 256 "yyparse.y" /* yacc.c:1646  */
+#line 260 "yyparse.y" /* yacc.c:1646  */
     { if( column_name( pyyenv->pstmt, (yyvsp[-1].qstring) ) ) YYABORT; }
-#line 1655 "yyparse.c" /* yacc.c:1646  */
+#line 1659 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 258 "yyparse.y" /* yacc.c:1646  */
+#line 262 "yyparse.y" /* yacc.c:1646  */
     { if( column_name( pyyenv->pstmt, (yyvsp[-2].qstring) ) ) YYABORT; }
-#line 1661 "yyparse.c" /* yacc.c:1646  */
+#line 1665 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 260 "yyparse.y" /* yacc.c:1646  */
+#line 264 "yyparse.y" /* yacc.c:1646  */
     {
 		yycol_t col;
 
@@ -1672,11 +1676,11 @@ yyreduce:
 		if( add_column(pyyenv->pstmt, &col) )
 			YYABORT;
 	  }
-#line 1676 "yyparse.c" /* yacc.c:1646  */
+#line 1680 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 271 "yyparse.y" /* yacc.c:1646  */
+#line 275 "yyparse.y" /* yacc.c:1646  */
     {
 		yycol_t col;
 
@@ -1687,11 +1691,11 @@ yyreduce:
 		if( add_column(pyyenv->pstmt, &col) )
 			YYABORT;
 	  }
-#line 1691 "yyparse.c" /* yacc.c:1646  */
+#line 1695 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 282 "yyparse.y" /* yacc.c:1646  */
+#line 286 "yyparse.y" /* yacc.c:1646  */
     {
 		yycol_t col;
 
@@ -1704,23 +1708,23 @@ yyreduce:
 		if( add_column(pyyenv->pstmt, &col) )
 			YYABORT;
 	  }
-#line 1708 "yyparse.c" /* yacc.c:1646  */
+#line 1712 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 295 "yyparse.y" /* yacc.c:1646  */
+#line 299 "yyparse.y" /* yacc.c:1646  */
     {	SETYYERROR(pyyenv, VARIABLE_IN_SELECT_LIST); YYABORT; }
-#line 1714 "yyparse.c" /* yacc.c:1646  */
+#line 1718 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 42:
-#line 308 "yyparse.y" /* yacc.c:1646  */
+#line 312 "yyparse.y" /* yacc.c:1646  */
     { pyyenv->pstmt->table = (yyvsp[0].name); }
-#line 1720 "yyparse.c" /* yacc.c:1646  */
+#line 1724 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 310 "yyparse.y" /* yacc.c:1646  */
+#line 314 "yyparse.y" /* yacc.c:1646  */
     {
 		if( ! pyyenv->pstmt->table )
 			pyyenv->pstmt->table = (yyvsp[0].name);
@@ -1730,67 +1734,67 @@ yyreduce:
 			YYABORT;
 		}
 	  }
-#line 1734 "yyparse.c" /* yacc.c:1646  */
+#line 1738 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 323 "yyparse.y" /* yacc.c:1646  */
+#line 327 "yyparse.y" /* yacc.c:1646  */
     { (yyval.name) = (yyvsp[0].name); }
-#line 1740 "yyparse.c" /* yacc.c:1646  */
+#line 1744 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 325 "yyparse.y" /* yacc.c:1646  */
+#line 329 "yyparse.y" /* yacc.c:1646  */
     { (yyval.name) = (yyvsp[-1].qstring); }
-#line 1746 "yyparse.c" /* yacc.c:1646  */
+#line 1750 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 327 "yyparse.y" /* yacc.c:1646  */
+#line 331 "yyparse.y" /* yacc.c:1646  */
     { (yyval.name) = (yyvsp[-2].qstring); }
-#line 1752 "yyparse.c" /* yacc.c:1646  */
+#line 1756 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 329 "yyparse.y" /* yacc.c:1646  */
+#line 333 "yyparse.y" /* yacc.c:1646  */
     {
 		SETYYERROR(pyyenv, VARIABLE_IN_TABLE_LIST);
 		YYABORT;
 	  }
-#line 1761 "yyparse.c" /* yacc.c:1646  */
+#line 1765 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 337 "yyparse.y" /* yacc.c:1646  */
+#line 341 "yyparse.y" /* yacc.c:1646  */
     {
 		pyyenv->pstmt->srchtree = 0;
 	  }
-#line 1769 "yyparse.c" /* yacc.c:1646  */
+#line 1773 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 341 "yyparse.y" /* yacc.c:1646  */
+#line 345 "yyparse.y" /* yacc.c:1646  */
     {
 		yystmt_t*	pstmt;
-		long		offset;
+		uintptr_t		offset;
 
 		pstmt = pyyenv->pstmt;
-		offset = (long)((yyvsp[0].offset));
+		offset = (uintptr_t)((yyvsp[0].offset));
 
 		pstmt->srchtree = pstmt->node_buf + offset;
 		srchtree_reloc (	pstmt->node_buf, pstmt->srchtreenum);
 	  }
-#line 1784 "yyparse.c" /* yacc.c:1646  */
+#line 1788 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 50:
-#line 354 "yyparse.y" /* yacc.c:1646  */
+#line 358 "yyparse.y" /* yacc.c:1646  */
     { (yyval.offset) = (yyvsp[-1].offset); }
-#line 1790 "yyparse.c" /* yacc.c:1646  */
+#line 1794 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 51:
-#line 356 "yyparse.y" /* yacc.c:1646  */
+#line 360 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 
@@ -1802,11 +1806,11 @@ yyreduce:
 		if(((yyval.offset) = add_node(pyyenv->pstmt, &node)) == ERROR_PTR )
 			YYABORT;
 	  }
-#line 1806 "yyparse.c" /* yacc.c:1646  */
+#line 1810 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 368 "yyparse.y" /* yacc.c:1646  */
+#line 372 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 		void*		p;
@@ -1819,11 +1823,11 @@ yyreduce:
 		if(((yyval.offset) = add_node(pyyenv->pstmt, &node)) == ERROR_PTR )
 			YYABORT;
 	  }
-#line 1823 "yyparse.c" /* yacc.c:1646  */
+#line 1827 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 53:
-#line 381 "yyparse.y" /* yacc.c:1646  */
+#line 385 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 
@@ -1835,11 +1839,11 @@ yyreduce:
 		if(((yyval.offset) = add_node(pyyenv->pstmt, &node)) == ERROR_PTR )
 			YYABORT;
 	  }
-#line 1839 "yyparse.c" /* yacc.c:1646  */
+#line 1843 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 54:
-#line 393 "yyparse.y" /* yacc.c:1646  */
+#line 397 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 		void*		ptr;
@@ -1864,11 +1868,11 @@ yyreduce:
 
 		(yyval.offset) = ptr;
 	  }
-#line 1868 "yyparse.c" /* yacc.c:1646  */
+#line 1872 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 55:
-#line 418 "yyparse.y" /* yacc.c:1646  */
+#line 422 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 		void*		ptr;
@@ -1898,11 +1902,11 @@ yyreduce:
 
 		(yyval.offset) = ptr;
 	  }
-#line 1902 "yyparse.c" /* yacc.c:1646  */
+#line 1906 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 448 "yyparse.y" /* yacc.c:1646  */
+#line 452 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 		void*		ptr;
@@ -1931,11 +1935,11 @@ yyreduce:
 
 		(yyval.offset) = ptr;
 	  }
-#line 1935 "yyparse.c" /* yacc.c:1646  */
+#line 1939 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 57:
-#line 477 "yyparse.y" /* yacc.c:1646  */
+#line 481 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 		void*		ptr;
@@ -1960,11 +1964,11 @@ yyreduce:
 
 		(yyval.offset) = ptr;
 	  }
-#line 1964 "yyparse.c" /* yacc.c:1646  */
+#line 1968 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 58:
-#line 502 "yyparse.y" /* yacc.c:1646  */
+#line 506 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 
@@ -1976,62 +1980,62 @@ yyreduce:
 		 || (((yyval.offset)	= add_node(pyyenv->pstmt, &node)) == ERROR_PTR) )
 			YYABORT;
 	  }
-#line 1980 "yyparse.c" /* yacc.c:1646  */
+#line 1984 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 59:
-#line 517 "yyparse.y" /* yacc.c:1646  */
+#line 521 "yyparse.y" /* yacc.c:1646  */
     { (yyval.flag) = 0; }
-#line 1986 "yyparse.c" /* yacc.c:1646  */
+#line 1990 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 519 "yyparse.y" /* yacc.c:1646  */
+#line 523 "yyparse.y" /* yacc.c:1646  */
     { (yyval.flag) = 0; }
-#line 1992 "yyparse.c" /* yacc.c:1646  */
+#line 1996 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 521 "yyparse.y" /* yacc.c:1646  */
+#line 525 "yyparse.y" /* yacc.c:1646  */
     { (yyval.flag) = 1; }
-#line 1998 "yyparse.c" /* yacc.c:1646  */
+#line 2002 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 523 "yyparse.y" /* yacc.c:1646  */
+#line 527 "yyparse.y" /* yacc.c:1646  */
     { (yyval.flag) = 1; }
-#line 2004 "yyparse.c" /* yacc.c:1646  */
+#line 2008 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 63:
-#line 528 "yyparse.y" /* yacc.c:1646  */
+#line 532 "yyparse.y" /* yacc.c:1646  */
     { (yyval.offset) = attr_name( pyyenv->pstmt, (yyvsp[0].name) ); if( (yyval.offset) == ERROR_PTR ) YYABORT; }
-#line 2010 "yyparse.c" /* yacc.c:1646  */
+#line 2014 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 530 "yyparse.y" /* yacc.c:1646  */
+#line 534 "yyparse.y" /* yacc.c:1646  */
     { (yyval.offset) = attr_name( pyyenv->pstmt, (yyvsp[-1].qstring) ); if( (yyval.offset) == ERROR_PTR ) YYABORT; }
-#line 2016 "yyparse.c" /* yacc.c:1646  */
+#line 2020 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 532 "yyparse.y" /* yacc.c:1646  */
+#line 536 "yyparse.y" /* yacc.c:1646  */
     { (yyval.offset) = attr_name( pyyenv->pstmt, (yyvsp[-2].qstring) ); if( (yyval.offset) == ERROR_PTR ) YYABORT; }
-#line 2022 "yyparse.c" /* yacc.c:1646  */
+#line 2026 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 66:
-#line 537 "yyparse.y" /* yacc.c:1646  */
+#line 541 "yyparse.y" /* yacc.c:1646  */
     {
 		if( ((yyval.offset) = add_node( pyyenv->pstmt, &((yyvsp[0].node)))) == ERROR_PTR )
 			YYABORT;
 	  }
-#line 2031 "yyparse.c" /* yacc.c:1646  */
+#line 2035 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 67:
-#line 542 "yyparse.y" /* yacc.c:1646  */
+#line 546 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 
@@ -2042,11 +2046,11 @@ yyreduce:
 		if( ((yyval.offset) = add_node(pyyenv->pstmt, &node)) == ERROR_PTR )
 			YYABORT;
 	  }
-#line 2046 "yyparse.c" /* yacc.c:1646  */
+#line 2050 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 68:
-#line 556 "yyparse.y" /* yacc.c:1646  */
+#line 560 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 
@@ -2056,11 +2060,11 @@ yyreduce:
 
 		(yyval.node) = node;
 	  }
-#line 2060 "yyparse.c" /* yacc.c:1646  */
+#line 2064 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 69:
-#line 566 "yyparse.y" /* yacc.c:1646  */
+#line 570 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 
@@ -2073,11 +2077,11 @@ yyreduce:
 
 		(yyval.node) = node;
 	  }
-#line 2077 "yyparse.c" /* yacc.c:1646  */
+#line 2081 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 70:
-#line 579 "yyparse.y" /* yacc.c:1646  */
+#line 583 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 
@@ -2088,11 +2092,11 @@ yyreduce:
 
 		(yyval.node) = node;
 	  }
-#line 2092 "yyparse.c" /* yacc.c:1646  */
+#line 2096 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 71:
-#line 590 "yyparse.y" /* yacc.c:1646  */
+#line 594 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 
@@ -2103,11 +2107,11 @@ yyreduce:
 
 		(yyval.node) = node;
 	  }
-#line 2107 "yyparse.c" /* yacc.c:1646  */
+#line 2111 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 72:
-#line 601 "yyparse.y" /* yacc.c:1646  */
+#line 605 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 
@@ -2120,29 +2124,29 @@ yyreduce:
 
 		(yyval.node) = node;
 	  }
-#line 2124 "yyparse.c" /* yacc.c:1646  */
+#line 2128 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 73:
-#line 616 "yyparse.y" /* yacc.c:1646  */
+#line 620 "yyparse.y" /* yacc.c:1646  */
     { (yyval.esc) = 0; }
-#line 2130 "yyparse.c" /* yacc.c:1646  */
+#line 2134 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 74:
-#line 617 "yyparse.y" /* yacc.c:1646  */
+#line 621 "yyparse.y" /* yacc.c:1646  */
     { (yyval.esc) = (yyvsp[0].qstring)[0]; }
-#line 2136 "yyparse.c" /* yacc.c:1646  */
+#line 2140 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 75:
-#line 618 "yyparse.y" /* yacc.c:1646  */
+#line 622 "yyparse.y" /* yacc.c:1646  */
     { (yyval.esc) = (yyvsp[-1].qstring)[0]; }
-#line 2142 "yyparse.c" /* yacc.c:1646  */
+#line 2146 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 76:
-#line 623 "yyparse.y" /* yacc.c:1646  */
+#line 627 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 
@@ -2156,11 +2160,11 @@ yyreduce:
 		if(((yyval.offset) = add_node(pyyenv->pstmt, &node)) == EMPTY_PTR)
 			YYABORT;
 	  }
-#line 2160 "yyparse.c" /* yacc.c:1646  */
+#line 2164 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 77:
-#line 637 "yyparse.y" /* yacc.c:1646  */
+#line 641 "yyparse.y" /* yacc.c:1646  */
     {
 		node_t	node;
 
@@ -2172,50 +2176,50 @@ yyreduce:
 		if(((yyval.offset) = add_node(pyyenv->pstmt, &node)) == ERROR_PTR)
 			YYABORT;
 	  }
-#line 2176 "yyparse.c" /* yacc.c:1646  */
+#line 2180 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 78:
-#line 651 "yyparse.y" /* yacc.c:1646  */
+#line 655 "yyparse.y" /* yacc.c:1646  */
     { (yyval.flag) = 0; }
-#line 2182 "yyparse.c" /* yacc.c:1646  */
+#line 2186 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 79:
-#line 652 "yyparse.y" /* yacc.c:1646  */
+#line 656 "yyparse.y" /* yacc.c:1646  */
     { (yyval.flag) = 1; }
-#line 2188 "yyparse.c" /* yacc.c:1646  */
+#line 2192 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 81:
-#line 658 "yyparse.y" /* yacc.c:1646  */
+#line 662 "yyparse.y" /* yacc.c:1646  */
     {
 		SETYYERROR(pyyenv, NOT_SUPPORT_GROUP_CLAUSE);
 		YYABORT;
 	  }
-#line 2197 "yyparse.c" /* yacc.c:1646  */
+#line 2201 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 83:
-#line 667 "yyparse.y" /* yacc.c:1646  */
+#line 671 "yyparse.y" /* yacc.c:1646  */
     {
 		SETYYERROR(pyyenv, NOT_SUPPORT_HAVING_CLAUSE);
 		YYABORT;
 	  }
-#line 2206 "yyparse.c" /* yacc.c:1646  */
+#line 2210 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 85:
-#line 676 "yyparse.y" /* yacc.c:1646  */
+#line 680 "yyparse.y" /* yacc.c:1646  */
     {
 		SETYYERROR(pyyenv, NOT_SUPPORT_ORDER_CLAUSE);
 		YYABORT;
 	  }
-#line 2215 "yyparse.c" /* yacc.c:1646  */
+#line 2219 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 86:
-#line 684 "yyparse.y" /* yacc.c:1646  */
+#line 688 "yyparse.y" /* yacc.c:1646  */
     {
 		int	i;
 		char*	head = 0;
@@ -2262,91 +2266,91 @@ yyreduce:
 		 * names are case sensitive.
 		 */
 	  }
-#line 2266 "yyparse.c" /* yacc.c:1646  */
+#line 2270 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 87:
-#line 734 "yyparse.y" /* yacc.c:1646  */
+#line 738 "yyparse.y" /* yacc.c:1646  */
     {
 		if( ((yyval.idx) = add_ins_head(pyyenv->pstmt, (yyvsp[0].qstring), 0)) == -1)
 			YYABORT;
 	  }
-#line 2275 "yyparse.c" /* yacc.c:1646  */
+#line 2279 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 88:
-#line 739 "yyparse.y" /* yacc.c:1646  */
+#line 743 "yyparse.y" /* yacc.c:1646  */
     {
 		if( ((yyval.idx) = add_ins_head(pyyenv->pstmt, (yyvsp[0].qstring), (yyvsp[-2].idx)))== -1)
 			YYABORT;
 	  }
-#line 2284 "yyparse.c" /* yacc.c:1646  */
+#line 2288 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 89:
-#line 747 "yyparse.y" /* yacc.c:1646  */
+#line 751 "yyparse.y" /* yacc.c:1646  */
     { (yyval.qstring) = get_unpacked_attrname(pyyenv->pstmt, (yyvsp[0].name)); }
-#line 2290 "yyparse.c" /* yacc.c:1646  */
+#line 2294 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 90:
-#line 749 "yyparse.y" /* yacc.c:1646  */
+#line 753 "yyparse.y" /* yacc.c:1646  */
     { (yyval.qstring) = get_unpacked_attrname(pyyenv->pstmt, (yyvsp[-1].qstring)); }
-#line 2296 "yyparse.c" /* yacc.c:1646  */
+#line 2300 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 91:
-#line 751 "yyparse.y" /* yacc.c:1646  */
+#line 755 "yyparse.y" /* yacc.c:1646  */
     { (yyval.qstring) = (yyvsp[-2].qstring); }
-#line 2302 "yyparse.c" /* yacc.c:1646  */
+#line 2306 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 92:
-#line 756 "yyparse.y" /* yacc.c:1646  */
+#line 760 "yyparse.y" /* yacc.c:1646  */
     {
 		if( ((yyval.idx) = add_ins_value(pyyenv->pstmt, (yyvsp[0].node), 0))== -1)
 			YYABORT;
 	  }
-#line 2311 "yyparse.c" /* yacc.c:1646  */
+#line 2315 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 93:
-#line 761 "yyparse.y" /* yacc.c:1646  */
+#line 765 "yyparse.y" /* yacc.c:1646  */
     {
 		if( ((yyval.idx) = add_ins_value(pyyenv->pstmt, (yyvsp[0].node), (yyvsp[-2].idx)))==-1)
 			YYABORT;
 	  }
-#line 2320 "yyparse.c" /* yacc.c:1646  */
+#line 2324 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 94:
-#line 769 "yyparse.y" /* yacc.c:1646  */
+#line 773 "yyparse.y" /* yacc.c:1646  */
     {
 		(yyval.node).type = en_nt_null;
 	  }
-#line 2328 "yyparse.c" /* yacc.c:1646  */
+#line 2332 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 95:
-#line 773 "yyparse.y" /* yacc.c:1646  */
+#line 777 "yyparse.y" /* yacc.c:1646  */
     {
 		(yyval.node).type = en_nt_qstr;
 		(yyval.node).value.qstr = (yyvsp[0].qstring);
 	  }
-#line 2337 "yyparse.c" /* yacc.c:1646  */
+#line 2341 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 96:
-#line 778 "yyparse.y" /* yacc.c:1646  */
+#line 782 "yyparse.y" /* yacc.c:1646  */
     {
 		(yyval.node).type = en_nt_param;
 		(yyval.node).value.ipar= (yyvsp[0].ipar);
 	  }
-#line 2346 "yyparse.c" /* yacc.c:1646  */
+#line 2350 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 97:
-#line 786 "yyparse.y" /* yacc.c:1646  */
+#line 790 "yyparse.y" /* yacc.c:1646  */
     {
 		pyyenv->pstmt->table = (yyvsp[-1].name);
 
@@ -2355,68 +2359,68 @@ yyreduce:
 		 || add_attr( pyyenv->pstmt, en_msgid, 1 ) )
 			YYABORT;
 	  }
-#line 2359 "yyparse.c" /* yacc.c:1646  */
+#line 2363 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 98:
-#line 798 "yyparse.y" /* yacc.c:1646  */
+#line 802 "yyparse.y" /* yacc.c:1646  */
     {
 		SETYYERROR( pyyenv, NOT_SUPPORT_POSITION_DELETE );
 		YYABORT;
 	  }
-#line 2368 "yyparse.c" /* yacc.c:1646  */
+#line 2372 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 99:
-#line 805 "yyparse.y" /* yacc.c:1646  */
+#line 809 "yyparse.y" /* yacc.c:1646  */
     { SETYYERROR(pyyenv, NOT_SUPPORT_DDL_DCL); }
-#line 2374 "yyparse.c" /* yacc.c:1646  */
+#line 2378 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 100:
-#line 806 "yyparse.y" /* yacc.c:1646  */
+#line 810 "yyparse.y" /* yacc.c:1646  */
     { SETYYERROR(pyyenv, NOT_SUPPORT_DDL_DCL); }
-#line 2380 "yyparse.c" /* yacc.c:1646  */
+#line 2384 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 101:
-#line 807 "yyparse.y" /* yacc.c:1646  */
+#line 811 "yyparse.y" /* yacc.c:1646  */
     { SETYYERROR(pyyenv, NOT_SUPPORT_DDL_DCL); }
-#line 2386 "yyparse.c" /* yacc.c:1646  */
+#line 2390 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 102:
-#line 808 "yyparse.y" /* yacc.c:1646  */
+#line 812 "yyparse.y" /* yacc.c:1646  */
     { SETYYERROR(pyyenv, NOT_SUPPORT_UPDATE); }
-#line 2392 "yyparse.c" /* yacc.c:1646  */
+#line 2396 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 103:
-#line 809 "yyparse.y" /* yacc.c:1646  */
+#line 813 "yyparse.y" /* yacc.c:1646  */
     { SETYYERROR(pyyenv, NOT_SUPPORT_SPROC); }
-#line 2398 "yyparse.c" /* yacc.c:1646  */
+#line 2402 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 104:
-#line 811 "yyparse.y" /* yacc.c:1646  */
+#line 815 "yyparse.y" /* yacc.c:1646  */
     { SETYYERROR(pyyenv, NOT_SUPPORT_SPROC); }
-#line 2404 "yyparse.c" /* yacc.c:1646  */
+#line 2408 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 105:
-#line 812 "yyparse.y" /* yacc.c:1646  */
+#line 816 "yyparse.y" /* yacc.c:1646  */
     { SETYYERROR(pyyenv, NOT_SUPPORT_DDL_DCL); }
-#line 2410 "yyparse.c" /* yacc.c:1646  */
+#line 2414 "yyparse.c" /* yacc.c:1646  */
     break;
 
   case 106:
-#line 813 "yyparse.y" /* yacc.c:1646  */
+#line 817 "yyparse.y" /* yacc.c:1646  */
     { SETYYERROR(pyyenv, NOT_SUPPORT_DDL_DCL); }
-#line 2416 "yyparse.c" /* yacc.c:1646  */
+#line 2420 "yyparse.c" /* yacc.c:1646  */
     break;
 
 
-#line 2420 "yyparse.c" /* yacc.c:1646  */
+#line 2424 "yyparse.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2644,7 +2648,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 815 "yyparse.y" /* yacc.c:1906  */
+#line 819 "yyparse.y" /* yacc.c:1906  */
 
 
 static void	unpack_col_name(char* schema_tab_column_name, column_name_t* ptr)
@@ -2728,7 +2732,7 @@ static	void*	add_node(yystmt_t* pstmt, node_t* node)
 		srchtree[i].right= EMPTY_PTR;
 	}
 
-	return (void*)((long)(pstmt->srchtreenum - 1));
+	return (void*)((uintptr_t)(pstmt->srchtreenum - 1));
 }
 
 static	void	srchtree_reloc(node_t* buf, int num)
@@ -2744,7 +2748,7 @@ static	void	srchtree_reloc(node_t* buf, int num)
  */
 {
 	int	i;
-	long offset;
+	uintptr_t offset;
 	node_t* ptr = buf;
 
 	for(i=0; ptr && i<num; ptr++, i++)
@@ -2753,7 +2757,7 @@ static	void	srchtree_reloc(node_t* buf, int num)
 			ptr->left = 0;
 		else
 		{
-			offset = (long)(ptr->left);
+			offset = (uintptr_t)(ptr->left);
 			ptr->left = buf + offset;
 		}
 
@@ -2761,7 +2765,7 @@ static	void	srchtree_reloc(node_t* buf, int num)
 			ptr->right= 0;
 		else
 		{
-			offset = (long)(ptr->right);
+			offset = (uintptr_t)(ptr->right);
 			ptr->right= buf+ offset;
 		}
 	}
