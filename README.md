@@ -21,6 +21,11 @@ DSN
     isql.exe -3 v mydsn
     isql.exe -3 v mydsn username password
 
+DSN dump meta data
+
+    isql.exe -c -d, -3 v mydsn
+    # this is a hack to delimiterd output mode so that the header for the column name also includes type metadata
+
 Connection string remote
 
     isql.exe -3 -k -v "Driver={Ingres II};Server=@servername,II[username,password];Database=iidbdb"

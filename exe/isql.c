@@ -32,6 +32,7 @@ static int	CloseDatabase( SQLHENV hEnv, SQLHDBC hDbc );
 
 static void WriteHeaderHTMLTable( SQLHSTMT hStmt );
 static void WriteHeaderNormal( SQLHSTMT hStmt, SQLCHAR	**szSepLine );
+#define WriteHeaderDelimited WriteHeaderDelimitedMeta
 static void WriteHeaderDelimited( SQLHSTMT hStmt, char cDelimiter );
 static void WriteBodyHTMLTable( SQLHSTMT hStmt );
 static SQLLEN WriteBodyNormal( SQLHSTMT hStmt );
@@ -1387,7 +1388,7 @@ static void WriteFooterHTMLTable( SQLHSTMT hStmt )
  * - last column no longer has a delimit char (it is implicit)...
  *   this is consistent with odbctxt
  ***************************/
-static void WriteHeaderDelimited( SQLHSTMT hStmt, char cDelimiter )
+static void WriteHeaderDelimitedORIG( SQLHSTMT hStmt, char cDelimiter )
 {
     SQLINTEGER      nCol                            = 0;
     SQLSMALLINT     nColumns                        = 0;
@@ -1402,6 +1403,45 @@ static void WriteHeaderDelimited( SQLHSTMT hStmt, char cDelimiter )
     {
         SQLColAttribute( hStmt, nCol, SQL_DESC_LABEL, szColumnName, sizeof(szColumnName), NULL, NULL );
         fputs((char*) szColumnName, stdout );
+        if ( nCol < nColumns )
+            putchar( cDelimiter );
+    }
+    putchar( '\n' );
+}
+// Based on WriteHeaderDelimited(), dumps some meta data
+static void WriteHeaderDelimitedMeta( SQLHSTMT hStmt, char cDelimiter )
+{
+    SQLINTEGER      nCol                            = 0;
+    SQLSMALLINT     nColumns                        = 0;
+    SQLCHAR         szColumnName[MAX_DATA_WIDTH+1];
+
+    SQLRETURN   retcode=SQL_ERROR;
+    SQLSMALLINT pcbColName=0;
+    SQLSMALLINT sqltype=0;
+    SQLULEN     precision=0;
+    SQLSMALLINT scale=0;
+    SQLSMALLINT nullable=0;
+
+    *szColumnName = '\0';
+
+    if ( SQLNumResultCols( hStmt, &nColumns ) != SQL_SUCCESS )
+        nColumns = -1;
+
+    for ( nCol = 1; nCol <= nColumns; nCol++ )
+    {
+        retcode = SQLDescribeCol(hStmt, nCol,
+                                 szColumnName, sizeof(szColumnName-1),
+                                 &pcbColName, &sqltype,
+                                 &precision, &scale, &nullable);
+        if (!SQL_SUCCEEDED(retcode))
+        {
+            fprintf(stderr, "SQLDescribeCol failed with %d\n", retcode);
+        }
+        else
+        {
+            fprintf(stdout, "%s pcbColName %d sqltype %d precision:%d scale:%d nullable:%d", szColumnName, pcbColName, sqltype, precision, scale, nullable);
+        }
+
         if ( nCol < nColumns )
             putchar( cDelimiter );
     }
