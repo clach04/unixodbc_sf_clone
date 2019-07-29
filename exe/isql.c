@@ -594,6 +594,7 @@ OpenDatabase( SQLHENV *phEnv, SQLHDBC *phDbc, char *szDSN, char *szUID, char *sz
             {
                 if ( bVerbose ) DumpODBCLog( hEnv, hDbc, 0 );
                 fprintf( stderr, "[ISQL]ERROR: Could not SQLConnect\n" );
+                fprintf( stderr, "[ISQL]ERROR: ODBC3\n" );
                 SQLFreeHandle( SQL_HANDLE_DBC, *phDbc );
                 SQLFreeHandle( SQL_HANDLE_ENV, *phEnv );
                 return 0;
@@ -631,6 +632,7 @@ OpenDatabase( SQLHENV *phEnv, SQLHDBC *phDbc, char *szDSN, char *szUID, char *sz
             {
                 if ( bVerbose ) DumpODBCLog( hEnv, hDbc, 0 );
                 fprintf( stderr, "[ISQL]ERROR: Could not SQLConnect\n" );
+                fprintf( stderr, "[ISQL]ERROR: not ODBC3\n" );
                 SQLFreeConnect( *phDbc );
                 SQLFreeEnv( *phEnv );
                 return 0;
