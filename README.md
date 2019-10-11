@@ -1,9 +1,10 @@
 isql under Windows
 ==================
 
-Quick hack to allow isql to be built/ran under Windows
+Quick hack to allow isql to be built/ran under Microsoft Windows.
+Binaries available from https://github.com/clach04/unixodbc_sf_clone/releases/
 
-Does NOT rely on Cygwin, can be used with MSVC or mingw32/msys2. Builds 32-bit or 64-bit
+Does NOT rely on Cygwin, can be built with MSVC or mingw32/msys2. Builds 32-bit or 64-bit
 
 See samples directory, `config.h`.
 
