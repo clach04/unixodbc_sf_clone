@@ -23,4 +23,8 @@ DSN
 
 Connection string remote
 
-    isql.exe -3 -k -v "Driver={Ingres II};Server=@servername,II[username,password];Database=iidbdb"
+    isql.exe -3 -k -v "Driver={Ingres CS};Server=@servername,II[username,password];Database=iidbdb"
+
+Connection string local (password no needed for osauth)
+
+    isql.exe -3 -k -v "Driver={Ingres II};Server=(local);Database=iidbdb"
